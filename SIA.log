@@ -1,0 +1,16 @@
+xHarbour Compiler build 1.1.0 (SimpLex)
+Copyright 1999-2008, http://www.xharbour.org http://www.harbour-project.org/
+Compiling 'SIA_FUNCOES.PRG'...
+1002003001001002003004005006007008009001000110012001300140015001600170018001900Lines 1922, Functions/Procedures 35
+Generating C source output to 'obj\SIA_FUNCOES.c'...
+Done.
+
+Building object module for 'obj\SIA_FUNCOES.c'
+using C compiler 'BCC32' as defined in 'F:\XHARBOUR\BIN\harbour.cfg'...
+Exec: BCC32  -c -D__EXPORT__ -IF:\XHARBOUR\include  -d -LF:\XHARBOUR\lib -oobj\SIA_FUNCOES.obj obj\SIA_FUNCOES.c
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+obj\SIA_FUNCOES.c:
+Warning W8004 SIA_FUNCOES.PRG 1913: 'dwRet' is assigned a value that is never used in function HB_FUN_GETCONSOLETITLE
+Done.
+Deleting: "obj\SIA_FUNCOES.c"
+Done.

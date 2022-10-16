@@ -1,0 +1,79 @@
+#BCC
+VERSION=BCB.01
+!ifndef CC_DIR
+CC_DIR = $(MAKE_DIR)
+!endif
+
+!ifndef HB_DIR
+HB_DIR = $(HARBOUR_DIR)
+!endif
+ 
+RECURSE= NO 
+ 
+SHELL = 
+COMPRESS = NO
+EXTERNALLIB = YES
+XFWH = NO
+FILESTOADD =  5
+WARNINGLEVEL =  0
+USERDEFINE = -M -N
+USERINCLUDE = 
+USERLIBS = 
+EDITOR = edit
+GUI = NO
+MT = NO
+SRC04 = obj 
+PROJECT = fcexe.exe $(PR) 
+OBJFILES = $(SRC04)\FC_PRINC.obj $(SRC04)\FC_CUPOM.obj $(SRC04)\FC_CUSTO.obj $(SRC04)\FC_ENTRA.obj $(SRC04)\FC_INVEN.obj //
+ $(SRC04)\FC_NOTA1.obj $(SRC04)\FC_NOTA2.obj $(SRC04)\FC_PEDID.obj $(SRC04)\FC_REQUI.obj $(SRC04)\MG_BIBLI.obj //
+ $(SRC04)\MG_CADA1.obj $(SRC04)\MG_CADA2.obj $(SRC04)\MG_CADA3.obj $(SRC04)\MG_UTILI.obj $(SRC04)\VM_BIBLI.obj $(OB) 
+PRGFILES = FC_PRINC.PRG FC_CUPOM.PRG FC_CUSTO.PRG FC_ENTRA.PRG FC_INVEN.PRG //
+ FC_NOTA1.PRG FC_NOTA2.PRG FC_PEDID.PRG FC_REQUI.PRG MG_BIBLI.PRG //
+ MG_CADA1.PRG MG_CADA2.PRG MG_CADA3.PRG MG_UTILI.PRG VM_BIBLI.PRG $(PS) 
+OBJCFILES = $(OBC) 
+CFILES = $(CF)
+RESFILES = 
+RESDEPEN = 
+TOPMODULE = FC_PRINC.PRG
+LIBFILES =  lang.lib vm.lib rtl.lib rdd.lib macro.lib pp.lib dbfntx.lib dbfcdx.lib dbffpt.lib common.lib gtwin.lib codepage.lib ct.lib tip.lib pcrepos.lib hsx.lib hbsix.lib  hbzip.lib  hbcomm.lib
+EXTLIBFILES = hbzip.lib hbcomm.lib
+DEFFILE = 
+HARBOURFLAGS =  -D-M -N  -w0
+CFLAG1 =  -OS $(SHELL)  $(CFLAGS) -d -c -L$(HB_DIR)\lib 
+CFLAG2 =  -I$(HB_DIR)\include;$(CC_DIR)\include
+RFLAGS = 
+LFLAGS = -L$(CC_DIR)\lib\obj;$(CC_DIR)\lib;$(HB_DIR)\lib -Gn -M -m -s -Tpe -x -ap
+IFLAGS = 
+LINKER = ilink32
+ 
+ALLOBJ = c0x32.obj $(OBJFILES) $(OBJCFILES)
+ALLRES = $(RESDEPEN)
+ALLLIB = $(USERLIBS) $(LIBFILES) import32.lib cw32.lib
+.autodepend
+ 
+#DEPENDS
+ 
+#COMMANDS
+.cpp.obj:
+$(CC_DIR)\BIN\bcc32 $(CFLAG1) $(CFLAG2) -o$* $**
+ 
+.c.obj:
+$(CC_DIR)\BIN\bcc32 -I$(HB_DIR)\include $(CFLAG1) $(CFLAG2) -o$* $**
+ 
+.prg.obj:
+$(HB_DIR)\bin\harbour -D__EXPORT__ -n -go -I$(HB_DIR)\include $(HARBOURFLAGS) -o$* $**
+ 
+.rc.res:
+$(CC_DIR)\BIN\brcc32 $(RFLAGS) $<
+ 
+#BUILD
+ 
+$(PROJECT): $(CFILES) $(OBJFILES) $(RESDEPEN) $(DEFFILE)
+    $(CC_DIR)\BIN\$(LINKER) @&&!  
+    $(LFLAGS) +
+    $(ALLOBJ), +
+    $(PROJECT),, +
+    $(ALLLIB), +
+    $(DEFFILE), +
+    $(ALLRES) 
+!

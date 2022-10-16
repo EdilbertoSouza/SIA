@@ -1,0 +1,6 @@
+-LF:\BCC55\lib\obj;F:\BCC55\lib;F:\XHARBOUR\lib -Gn -M -m -s -Tpe -x -ap +
+c0x32.obj obj\SIA.obj obj\SIA_BASE.obj obj\SIA_CADASTROS.obj obj\SIA_FUNCOES.obj, +
+sia.exe,, +
+lang.lib vm.lib rtl.lib rdd.lib macro.lib pp.lib dbfntx.lib dbfcdx.lib dbffpt.lib common.lib gtwin.lib codepage.lib ct.lib tip.lib pcrepos.lib hsx.lib hbsix.lib import32.lib cw32.lib, +
+, +
+
